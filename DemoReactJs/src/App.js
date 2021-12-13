@@ -1,18 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import $ from 'jquery';
+import firebase from "./firebase";
+import { collection, addDoc } from "firebase/firestore"; 
+import { getFirestore } from "firebase/firestore";
+
+const ref = firebase.firestore().collection("users");
 
 class App extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-        UserArray : []
+        UserArray : [],
+        UserArrayFirebase : []
       };
+      // Listen to storage event
+      window.addEventListener('storage', (e) => this.getAllUserFirebase(e), (e) => this.getAllUser(e));
+
+      this.getAllUserFirebase = this.getAllUserFirebase.bind(this);
+      this.getAllUser = this.getAllUser.bind(this);
   }
 
   componentDidMount() {
     this.getAllUser();
+    this.getAllUserFirebase();
   }
 
   getAllUser(){
@@ -115,6 +127,77 @@ class App extends React.Component {
     });
   }
 
+  //firebase
+  getAllUserFirebase(){
+    const ref = firebase.firestore().collection("Users");
+    ref.onSnapshot((querySnapshot) => {
+      const TempUserArrayFirebase = [];
+      querySnapshot.forEach((doc) => {
+        var TempUserModel = {
+          UserAddress : doc.data().UserAddress,
+          UserId : doc.id,
+          UserName : doc.data().UserName,
+          UserPhone : doc.data().UserPhone
+        };
+        TempUserArrayFirebase.push(TempUserModel);
+      })
+      this.setState({ UserArrayFirebase : TempUserArrayFirebase });
+      console.log(TempUserArrayFirebase);
+    })
+  }
+
+  handleAddNewUserFirebase = (event) =>{
+    event.preventDefault();
+    try {
+      const docRef = addDoc(collection(getFirestore(), "Users"), {
+      UserAddress: event.target.elements["userAddressFB"].value,
+      UserName: event.target.elements["userNameFB"].value,
+      UserPhone: event.target.elements["userPhoneFB"].value
+    });
+    console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
+
+  handleOpenPopupEditUserFirebase = (UserId, UserName, UserAddress, UserPhone) =>{
+    var modal = document.getElementById("myModalFirebase");
+
+    var span = document.getElementsByClassName("close")[1];
+    document.getElementById("userIdFB").value = UserId;
+    document.getElementById("userNameFB").value = UserName;
+    document.getElementById("userAddressFB").value = UserAddress;
+    document.getElementById("userPhoneFB").value = UserPhone;
+    modal.style.display = "block";
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+
+  handleEditUserFirebase = (event) =>{
+    event.preventDefault();
+    try {
+      var docRef = firebase.firestore().collection("Users").doc(event.target.elements["userIdFB"].value).update({
+        UserAddress: event.target.elements["userAddressFB"].value,
+        UserName: event.target.elements["userNameFB"].value,
+        UserPhone: event.target.elements["userPhoneFB"].value
+      });
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
+
+  handleDeleteUserFirebase = (userId) => {
+    firebase.firestore().collection('Users').doc(userId).delete();
+  }
+
  render() {
     return (
       <div>
@@ -138,6 +221,7 @@ class App extends React.Component {
             <input type="submit" value="ADD" required />
           </form>
         </div>
+        <h3>MySQL database</h3>
         <div className="table_contain">
           <table>
           <tbody>
@@ -157,6 +241,52 @@ class App extends React.Component {
                   <td className="action">
                     <button id="Edit" onClick={() => this.handlerOpenPopupEdit(numList.userId, numList.userName, numList.userAddress, numList.userPhone)}>Edit User</button>
                     <button id="Delete" onClick={() => this.handlerDeleteUser(numList.userId)}>Delete User</button>
+                  </td>
+                </tr>
+            ))}
+            </tbody>
+          </table>
+        </div>
+        <h3>Firebase realtime database</h3>
+        <div id="myModalFirebase" className="modal">
+          <div className="modal-content">
+            <span className="close">&times;</span>
+            <form onSubmit={this.handleEditUserFirebase}>
+              <input name="userIdFB" id="userIdFB" type="text" disabled required/>
+              <input name="userNameFB" id="userNameFB" type="text" required/>
+              <input name="userAddressFB" id="userAddressFB" type="text" required/>
+              <input name="userPhoneFB" id="userPhoneFB" type="text" required/>
+              <input name="submitFB" type="submit" value="UPDATE" required/>
+            </form>
+          </div>
+        </div>
+        <div className="addUser">
+          <form onSubmit={this.handleAddNewUserFirebase}>
+            <input name="userNameFB" placeholder="User name" id="userName" type="text" required/>
+            <input name="userAddressFB" placeholder="User address" id="userAddress" type="text" required/>
+            <input name="userPhoneFB" placeholder="User phone" id="userPhone" type="text" required/>
+            <input name="submitFB" type="submit" value="ADD" required/>
+          </form>
+        </div>
+        <div className="table_contain">
+          <table>
+          <tbody>
+            <tr>
+              <th>UserId</th>
+              <th>UserName</th>
+              <th>UserAddress</th>
+              <th>UserPhone</th>
+              <th className="action">Action</th>
+            </tr>
+            {this.state.UserArrayFirebase.map((numList,i) =>(
+                <tr key={numList.UserId}>
+                  <td>{numList.UserId}</td>
+                  <td>{numList.UserName}</td>
+                  <td>{numList.UserAddress}</td>
+                  <td>{numList.UserPhone}</td>
+                  <td className="action">
+                    <button id="Edit" onClick={() => this.handleOpenPopupEditUserFirebase(numList.UserId, numList.UserName, numList.UserAddress, numList.UserPhone)}>Edit User</button>
+                    <button id="Delete" onClick={() => this.handleDeleteUserFirebase(numList.UserId)}>Delete User</button>
                   </td>
                 </tr>
             ))}
