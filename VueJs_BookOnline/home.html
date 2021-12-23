@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <title>Trang chủ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            margin: 0 200px 0 200px;
+            position: relative;
+        }
+        
+        header {
+            position: absolute;
+        }
+        
+        header img {
+            width: 100%;
+        }
+        
+        .headerNavigation {
+            text-align: center;
+            background-color: rgb(46, 46, 46);
+        }
+        
+        .headerNavigation ul {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            border-bottom: 5px solid rgb(53, 147, 224);
+        }
+        
+        .headerNavigation ul li {
+            padding: 10px;
+        }
+        
+        .headerNavigation ul li:hover {
+            background-color: rgb(78, 78, 78);
+        }
+        
+        .headerNavigation ul li a {
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .active {
+            border-bottom: 5px solid rgb(236, 56, 56);
+        }
+        
+        main {
+            position: absolute;
+            margin-top: 200px;
+            background-color: #fff;
+        }
+        
+        .search {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+        
+        .search #searchBox {
+            text-align: center;
+            position: relative;
+            width: fit-content;
+        }
+        
+        .search input {
+            padding: 10px;
+            border-radius: 15px;
+            font-size: 15px;
+            border: 1px solid gray;
+            width: 300px;
+        }
+        
+        .search i {
+            position: absolute;
+            line-height: 50px;
+            right: 20px;
+            color: gray;
+        }
+        
+        .listBook {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+        }
+        
+        .detailBook {
+            width: 400px;
+            margin: 10px;
+        }
+        
+        .detailBook #coverBook {
+            float: left;
+        }
+        
+        .detailBook #coverBook img {
+            width: 170px;
+            margin: 10px;
+        }
+        
+        .detailBook #descripsionBook {
+            line-height: 50px;
+        }
+        
+        .detailBook #descripsionBook h3 {
+            color: rgb(31, 117, 187);
+            text-align: center;
+        }
+        
+        .footer {
+            width: 100%;
+            height: 350px;
+            background-color: rgb(231, 231, 231);
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .footer div {
+            margin: 20px 0 0 0;
+        }
+        
+        .footer div a {
+            display: block;
+            margin: 10px;
+        }
+        
+        .footer div h3 {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://i.pinimg.com/originals/04/5c/70/045c70e3dcdb99ec3fa50aebb6cc3668.jpg">
+    </header>
+
+    <main>
+        <div class="headerNavigation">
+            <ul>
+                <li><a class="active" href="#home">Trang chủ</a></li>
+                <li><a href="#news">Thư viện sách</a></li>
+                <li><a href="#contact">Thể loại</a></li>
+                <li><a href="#about">Review sách</a></li>
+                <li><a href="#about">Tác giả</a></li>
+                <li><a href="#about">Liên hệ</a></li>
+            </ul>
+        </div>
+        <div class="search">
+            <div id="searchBox">
+                <input type="text" placeholder="Tìm kiếm sách..."><i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div class="listBook">
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h3>Đắc nhân tâm</h3>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Vấn</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="category">
+                <h3>Thể loại</h3>
+                <a>Thể loại 1</a>
+                <a>Thể loại 1</a>
+                <a>Thể loại 1</a>
+                <a>Thể loại 1</a>
+                <a>Thể loại 1</a>
+            </div>
+            <div class="outStandingBook">
+                <h3>Tác phẩm nổi bật</h3>
+                <a>Tác phẩm nổi bật 1</a>
+                <a>Tác phẩm nổi bật 1</a>
+                <a>Tác phẩm nổi bật 1</a>
+                <a>Tác phẩm nổi bật 1</a>
+                <a>Tác phẩm nổi bật 1</a>
+            </div>
+            <div class="readBookOnline">
+                <h3>Đọc sách hay online</h3>
+                <a>Đọc sách hay online 1</a>
+                <a>Đọc sách hay online 1</a>
+                <a>Đọc sách hay online 1</a>
+                <a>Đọc sách hay online 1</a>
+                <a>Đọc sách hay online 1</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+
+</html>

@@ -98,6 +98,9 @@
                 url: 'Https://google.com'
             }]
         },
+        created() {
+            console.log(new URL(location.href).searchParams.get('page'));
+        },
         watch: {
             UserName: function() {
                 if (this.UserName == '' || this.Password == '') {
