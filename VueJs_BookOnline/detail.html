@@ -66,63 +66,44 @@
             position: absolute;
             margin-top: 200px;
             background-color: #fff;
-        }
-        
-        .search {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px;
-        }
-        
-        .search #searchBox {
-            text-align: center;
-            position: relative;
-            width: fit-content;
-        }
-        
-        .search input {
-            padding: 10px;
-            border-radius: 15px;
-            font-size: 15px;
-            border: 1px solid gray;
-            width: 300px;
-        }
-        
-        .search i {
-            position: absolute;
-            line-height: 50px;
-            right: 20px;
-            color: gray;
-        }
-        
-        .listBook {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-around;
+            width: 100%;
         }
         
         .detailBook {
-            width: 400px;
-            margin: 10px;
-        }
-        
-        .detailBook #coverBook {
-            float: left;
+            margin: 50px 10px 50px 10px;
+            display: flex;
+            justify-content: center;
         }
         
         .detailBook #coverBook img {
-            width: 170px;
-            margin: 10px;
+            width: 300px;
         }
         
         .detailBook #descripsionBook {
+            padding: 10px 10px 10px 30px;
             line-height: 50px;
+            position: relative;
         }
         
-        .detailBook #descripsionBook h3 {
-            color: rgb(31, 117, 187);
+        .detailBook #descripsionBook h1 {
+            color: rgb(15, 124, 214);
+        }
+        
+        .detailBook #descripsionBook a {
+            padding: 5px;
+            border-radius: 8px;
+            background-color: rgb(85, 163, 236);
+            color: #fff;
+            width: 100%;
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        .scriptAboutBook {
+            width: 100%;
+            margin: 10px;
         }
         
         .footer {
@@ -191,113 +172,28 @@
                 <li><a href="#about">Liên hệ</a></li>
             </ul>
         </div>
-        <div class="search">
-            <div id="searchBox">
-                <input type="text" placeholder="Tìm kiếm sách..."><i class="fas fa-search"></i>
+
+        <!-- // -->
+        <div class="book">
+            <div class="detailBook">
+                <div id="coverBook">
+                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                </div>
+                <div id="descripsionBook">
+                    <h1>Đắc nhân tâm</h1>
+                    <p>- Xuất bản năm 2000</p>
+                    <p>- Của Diệp Quang Đức</p>
+                    <a>Bắt đầu đọc</a>
+                </div>
+            </div>
+            <div class="scriptAboutBook">
+                <h3><b>- Lời nói đầu</b></h3>
+                <p>Đắc nhân tâm (được lòng người), tên tiếng Anh là How to Win Friends and Influence People là một quyển sách nhằm tự giúp bản thân (self-help) bán chạy nhất từ trước đến nay. Quyển sách này do Dale Carnegie viết và đã được xuất bản lần đầu
+                    vào năm 1936, nó đã được bán 15 triệu bản trên khắp thế giới.[1][2] Nó cũng là quyển sách bán chạy nhất của New York Times trong 10 năm. Tác phẩm được đánh giá là cuốn sách đầu tiên và hay nhất trong thể loại này, có ảnh hưởng thay
+                    đổi cuộc đời đối với hàng triệu người trên thế giớ... <a href="#" style="text-decoration: none; color: rgb(26, 141, 187);">Đọc tiếp</a></p>
             </div>
         </div>
-        <div class="listBook">
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-            <div class="detailBook">
-                <div id="coverBook">
-                    <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                </div>
-                <div id="descripsionBook">
-                    <h3>Đắc nhân tâm</h3>
-                    <p>- Xuất bản năm 2000</p>
-                    <p>- Của Diệp Vấn</p>
-                </div>
-            </div>
-        </div>
+        <!-- // -->
 
         <div class="footer">
             <div class="category">
