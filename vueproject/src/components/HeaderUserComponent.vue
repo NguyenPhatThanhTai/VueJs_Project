@@ -26,7 +26,10 @@
         body {
             margin: 0 200px 0 200px;
             position: relative;
-            background-color: gray;
+            background-image: url('https://wallpaperaccess.com/full/124452.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
         
         header {

@@ -13,6 +13,7 @@
     "jquery": "^3.6.0",
     "turn-js": "^0.5.4",
     "vue": "^2.6.11",
+    "vue-cookies": "^1.7.4",
     "vue-router": "^3.5.3",
     "vue-turnjs": "^1.2.5"
   },

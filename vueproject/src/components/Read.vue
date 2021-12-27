@@ -105,6 +105,8 @@
     async mounted(){
         let data = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
         this.data = data.data.time.updated;
+        // this.$cookies.set("data", data.data.time.updated, "1h");// làm việc với cookie
+        // this.data = this.$cookies.get("data");
         this.dataReady = true;
         this.loadEffectBook();
     },
