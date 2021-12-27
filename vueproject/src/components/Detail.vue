@@ -2,17 +2,8 @@
     <div id="detail">
       <HeaderUser/>
         <main>
-        <div class="headerNavigation">
-            <ul>
-                <li><a class="active" href="#home">Trang chủ</a></li>
-                <li><router-link to="/detail">Thư viện sách</router-link></li>
-                <li><a href="#contact">Thể loại</a></li>
-                <li><a href="#about">Review sách</a></li>
-                <li><a href="#about">Tác giả</a></li>
-                <li><a href="#about">Liên hệ</a></li>
-            </ul>
-        </div>
-          <div class="book">
+        <div class="left_content">
+            <div class="book">
               <div class="detailBook">
                   <div id="coverBook">
                       <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
@@ -31,7 +22,9 @@
                       đổi cuộc đời đối với hàng triệu người trên thế giớ... <a href="#" style="text-decoration: none; color: rgb(26, 141, 187);">Đọc tiếp</a></p>
               </div>
           </div>
-          <FooterUser/>
+        </div>
+        <RightNavigation/>
+        <FooterUser/>
         </main>
     </div>
 </template>
@@ -67,11 +60,16 @@
         bottom: 10px;
         text-align: center;
         font-size: 20px;
+        cursor: pointer;
+    }
+
+    .detailBook #descripsionBook a:hover{
+        background-color: rgb(49, 141, 226);
     }
     
     .scriptAboutBook {
         width: 100%;
-        margin: 10px;
+        padding: 10px;
     }
     
     .footer {
@@ -95,6 +93,11 @@
     .footer div h3 {
         margin: 10px;
     }
+
+    .left_content {
+        width: 70%;
+        float: left;
+    }
     
     @media only screen and (max-width: 600px) {
         body {
@@ -109,16 +112,18 @@
             width: 150px;
             margin: 10px;
         }
-        main {
-            position: absolute;
-            margin-top: 100px;
-            background-color: #fff;
-        }
         .footer {
             height: fit-content;
         }
         .footer div {
             width: 100%;
+        }
+        .left_content {
+            width: 100%;
+        }
+        .detailBook #descripsionBook a {
+            position: relative;
+            display: inline-block;
         }
     }
 </style>
@@ -126,18 +131,21 @@
 <script>
 import HeaderUser from './HeaderUserComponent.vue'
 import FooterUser from './FooterUserComponent.vue'
+import RightNavigation from './RightNavigation.vue'
+
 export default {
   name: 'Detail',
   components:{
       HeaderUser,
-      FooterUser
+      FooterUser,
+      RightNavigation
   },
   data: function(){
     return {
       bookId : ''
     }
   },
-  created() {
+  async created() {
     this.bookId = this.$route.query.book
   },
   methods:{

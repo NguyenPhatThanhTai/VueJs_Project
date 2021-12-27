@@ -1,6 +1,16 @@
 <template>
         <header>
             <img src="https://i.pinimg.com/originals/04/5c/70/045c70e3dcdb99ec3fa50aebb6cc3668.jpg">
+            <div class="headerNavigation">
+                <ul>
+                    <li><router-link to="/">Trang chủ</router-link></li>
+                    <li><router-link to="/detail">Thư viện sách</router-link></li>
+                    <li><a href="#contact">Thể loại</a></li>
+                    <li><a href="#about">Review sách</a></li>
+                    <li><a href="#about">Tác giả</a></li>
+                    <li><a href="#about">Liên hệ</a></li>
+                </ul>
+            </div>
         </header>
 </template>
 
@@ -16,6 +26,7 @@
         body {
             margin: 0 200px 0 200px;
             position: relative;
+            background-color: gray;
         }
         
         header {
@@ -29,6 +40,8 @@
         .headerNavigation {
             text-align: center;
             background-color: rgb(46, 46, 46);
+            position: absolute;
+            top: 153px;
             width: 100%;
         }
         
@@ -102,8 +115,11 @@
             }
             main {
                 position: absolute;
-                margin-top: 100px;
+                margin-top: 200px;
                 background-color: #fff;
+            }
+            .headerNavigation {
+                top: 107px;
             }
             .footer {
                 height: fit-content;

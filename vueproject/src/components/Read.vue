@@ -1,18 +1,7 @@
 <template>
-    <div id="read">
+    <div id="read" v-if="dataReady">
         <HeaderUser/>
         <main>
-        <div class="headerNavigation">
-            <ul>
-                <li><a class="active" href="#home">Trang chủ</a></li>
-                <li><router-link to="/detail">Thư viện sách</router-link></li>
-                <li><a href="#contact">Thể loại</a></li>
-                <li><a href="#about">Review sách</a></li>
-                <li><a href="#about">Tác giả</a></li>
-                <li><a href="#about">Liên hệ</a></li>
-            </ul>
-        </div>
-
         <FwTurn/>
             <div class="read">
                 <div id="magazine">
@@ -20,25 +9,7 @@
                         <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
                     </div>
                     <div>
-                        <p>
-                            <b>Mục lục</b><br><br>
-                            Lời giới thiệu<br><br>
-
-                            Quyển sách của mọi thời đại<br><br>
-
-                            “ĐẮC NHÂN TÂM” ra đời như thế nào ?<br><br>
-
-                            Để quyển sách này mang đến kết quả tốt nhất<br><br>
-
-                            Phần 1:<br><br>
-                            Nghệ thuật ứng xử căn bản<br><br>
-
-                            Nguyên tắc 1: Muốn lấy mật thì đừng phá tổ ong<br><br>
-
-                            Nguyên tắc 2: Bí mật lớn nhất trong phép ứng xử<br><br>
-
-                            Nguyên tắc 3: Ai làm được điều dưới đây, người đó sẽ có cả thế giới<br><br>
-                        </p>
+                        <p>{{data}}</p>
                     </div>
                     <div>
                         <p>Mục lục cuốn sách Đắc Nhân Tâm: Phần I – Chương 1: Muốn lấy mật đừng phá tổ ong Phần I – Chương 2 : Bí Mật Lớn Nhất Trong Phép Ứng Xử Phần I – Chương 3: Ai Làm Được Điều Dưới Đây, Người Đó Sẽ Có Cả Thế Giới Phần II – Chương 4: Thành
@@ -88,6 +59,7 @@
         
         #magazine p {
             padding: 10px;
+            border-left: 1px solid gray;
         }
         
         #magazine span {
@@ -115,6 +87,7 @@
     import FooterUser from './FooterUserComponent.vue'
     import { FwTurn } from "vue-turnjs";
     import $ from 'jquery'
+    import axios from 'axios'
 
     export default {
     name: 'read',
@@ -123,40 +96,55 @@
       FooterUser,
       FwTurn 
     },
-    created(){
-    $(window).ready(function() {
-        $('#magazine').turn({
-            display: 'double',
-            acceleration: true,
-            gradients: !$.isTouch,
-            elevation: 50,
-            when: {
-                turned: function() {
-                    /*console.log('Current view: ', $(this).turn('view'));*/
-                }
-            }
-        });
+    data: function(){
+        return{
+            data: null,
+            dataReady : false
+        }
+    },
+    async mounted(){
+        let data = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
+        this.data = data.data.time.updated;
+        this.dataReady = true;
+        this.loadEffectBook();
+    },
+    async created(){
 
-        $('.previous').on('click', function(e) {
-            e.preventDefault();
-            $('#magazine').turn('previous');
-        })
-
-        $('.next').on('click', function(e) {
-            e.preventDefault();
-            $('#magazine').turn('next');
-        })
-    });
-
-    $(window).bind('keydown', function(e) {
-        if (e.keyCode == 37)
-            $('#magazine').turn('previous');
-        else if (e.keyCode == 39)
-            $('#magazine').turn('next');
-        });
     },
     methods:{
+        loadEffectBook(){
+        $(window).ready(function() {
+            $('#magazine').turn({   
+                display: 'double',
+                acceleration: true,
+                gradients: true,
+                elevation: 50,
+                when: {
+                    turned: function() {
+                        //Lấy trang hiện tại
+                        console.log('Current view: ', $(this).turn('view'));    
+                    }
+                }
+            });
 
+            $('.previous').on('click', function(e) {
+                e.preventDefault();
+                $('#magazine').turn('previous');
+            })
+
+            $('.next').on('click', function(e) {
+                e.preventDefault();
+                $('#magazine').turn('next');
+            })
+        });
+
+        $(window).bind('keydown', function(e) {
+            if (e.keyCode == 37)
+                $('#magazine').turn('previous');
+            else if (e.keyCode == 39)
+                $('#magazine').turn('next');
+        });
+        }
     }
 }
 </script>
