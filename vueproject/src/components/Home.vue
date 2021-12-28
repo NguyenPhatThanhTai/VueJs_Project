@@ -1,7 +1,7 @@
 <template>
-<div id="home">
+<div id="home" class="UserContain">
     <HeaderUser/>
-    <main>
+    <main id="UserMain">
         <div class="left_content">
             <div class="search">
                 <div id="searchBox">

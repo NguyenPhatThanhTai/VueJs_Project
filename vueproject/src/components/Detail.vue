@@ -1,7 +1,7 @@
 <template>
-    <div id="detail">
+    <div id="detail" class="UserContain">
       <HeaderUser/>
-        <main>
+        <main id="UserMain">
         <div class="left_content">
             <div class="book">
               <div class="detailBook">

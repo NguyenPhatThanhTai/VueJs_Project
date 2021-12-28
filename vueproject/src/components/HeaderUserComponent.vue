@@ -1,5 +1,5 @@
 <template>
-        <header>
+        <header id="UserHeader">
             <img src="https://i.pinimg.com/originals/04/5c/70/045c70e3dcdb99ec3fa50aebb6cc3668.jpg">
             <div class="headerNavigation">
                 <ul>
@@ -24,19 +24,22 @@
         }
         
         body {
-            margin: 0 200px 0 200px;
-            position: relative;
             background-image: url('https://wallpaperaccess.com/full/124452.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
+
+        .UserContain{
+            margin: 0 200px 0 200px;
+            position: relative;
+        }
         
-        header {
+        #UserHeader {
             position: absolute;
         }
         
-        header img {
+        #UserHeader img {
             width: 100%;
         }
         
@@ -75,7 +78,7 @@
             border-bottom: 5px solid rgb(236, 56, 56);
         }
         
-        main {
+        #UserMain {
             position: absolute;
             margin-top: 200px;
             background-color: #fff;

@@ -1,10 +1,10 @@
 <template>
-    <div id="read" v-if="dataReady">
+    <div id="read" class="UserContain">
         <HeaderUser/>
-        <main>
+        <main id="UserMain">
         <FwTurn/>
             <div class="read">
-                <div id="magazine">
+                <div id="magazine" v-if="dataReady">
                     <div>
                         <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
                     </div>
