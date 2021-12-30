@@ -4,7 +4,13 @@
         <main id="UserMain">
         <FwTurn/>
             <div class="read">
-                <div id="magazine" v-if="dataReady">
+                <div id="loading" v-if="dataReady == false">
+                    <div>
+                        <img src="../../public/Bookloading.gif">
+                        <b>Chúng tôi đang chuẩn bị sách cho bạn, vui lòng đợi trong giây lát...</b>
+                    </div>
+                </div>
+                <div id="magazine" v-if="dataReady == true">
                     <div>
                         <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
                     </div>
@@ -48,6 +54,7 @@
             justify-content: center;
             height: 100%;
             margin: 30px;
+            min-height: 700px;
         }
         
         #magazine {
@@ -80,6 +87,25 @@
         .page{
             background-color:#fff;
         }
+
+        #loading{
+            text-align: center;
+            display: flex;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loading img{
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        #loading b{
+            display: block;
+            text-align: center;
+        }
 </style>
 
 <script>
@@ -103,12 +129,15 @@
         }
     },
     async mounted(){
-        let data = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
-        this.data = data.data.time.updated;
-        // this.$cookies.set("data", data.data.time.updated, "1h");// làm việc với cookie
-        // this.data = this.$cookies.get("data");
-        this.dataReady = true;
-        this.loadEffectBook();
+            let data = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
+            this.data = data.data.time.updated;
+            // this.$cookies.set("data", data.data.time.updated, "1h");// làm việc với cookie
+            // this.data = this.$cookies.get("data");
+            var that = this;
+        setTimeout(function() {
+            that.dataReady = true;
+            that.loadEffectBook();
+        }, 3000);
     },
     async created(){
 

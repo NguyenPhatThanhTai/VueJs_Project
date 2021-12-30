@@ -37,6 +37,7 @@
                     <input class="submit" type="submit" value="Thêm sách">
                 </form>
                 <div style="clear: both;"></div>
+                <button v-on:click="changeListData">Đổi</button>
                 <div class="listCourse">
                     <table>
                         <tr>
@@ -47,62 +48,17 @@
                             <th>Nhà xuất bản</th>
                             <th>Hành động</th>
                         </tr>
-                        <tr>
-                            <td>Emil</td>
-                            <td>Tobias</td>
-                            <td>Linus</td>
-                            <td>Tobias</td>
-                            <td>Tobias</td>
+                        <tr v-for="book in ListBook" v-bind:key="book.BookId" v-bind:detail="book">
+                            <td>{{book.BookId}}</td>
+                            <td>{{book.Name}}</td>
+                            <td>{{book.Publisher}}</td>
+                            <td>{{book.Author}}</td>
+                            <td>{{book.Topic}}</td>
                             <td>
                                 <p id="detail" class="clickUpdate">Sửa</p>
                                 <p id="delete">Xóa</p>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Emil</td>
-                            <td>Tobias</td>
-                            <td>Linus</td>
-                            <td>Tobias</td>
-                            <td>Tobias</td>
-                            <td>
-                                <p id="detail" class="clickUpdate">Sửa</p>
-                                <p id="delete">Xóa</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Emil</td>
-                            <td>Tobias</td>
-                            <td>Linus</td>
-                            <td>Tobias</td>
-                            <td>Tobias</td>
-                            <td>
-                                <p id="detail" class="clickUpdate">Sửa</p>
-                                <p id="delete">Xóa</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Emil</td>
-                            <td>Tobias</td>
-                            <td>Linus</td>
-                            <td>Tobias</td>
-                            <td>Tobias</td>
-                            <td>
-                                <p id="detail" class="clickUpdate">Sửa</p>
-                                <p id="delete">Xóa</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Emil</td>
-                            <td>Tobias</td>
-                            <td>Linus</td>
-                            <td>Tobias</td>
-                            <td>Tobias</td>
-                            <td>
-                                <p id="detail" class="clickUpdate">Sửa</p>
-                                <p id="delete">Xóa</p>
-                            </td>
-                        </tr>
-
                     </table>
                 </div>
             </div>
@@ -170,6 +126,29 @@
             editorConfig: {
                 // The configuration of the editor.
             },
+            //list book
+            ListBook :[{
+                BookId : "BOOK1",
+                Name : "Hàn vạn câu hỏi tại sao 1",
+                Publisher : "Tuổi trẻ",
+                Author : "Nguyễn Du",
+                Topic : "Cuộc sống"
+            },
+            {
+                BookId : "BOOK2",
+                Name : "Hàn vạn câu hỏi tại sao 2",
+                Publisher : "Tuổi trẻ",
+                Author : "Nguyễn Du",
+                Topic : "Cuộc sống"
+            },
+            {
+                BookId : "BOOK2",
+                Name : "Hàn vạn câu hỏi tại sao 3",
+                Publisher : "Tuổi trẻ",
+                Author : "Nguyễn Du",
+                Topic : "Cuộc sống"
+            }],
+            //form add book
             BookName: '',
             BookCover: '',
             BookPulisher: '',
@@ -224,6 +203,16 @@
             this.BookAuthor = e.target.elements.BookAuthor.value;
 
             console.log(this.BookName + "|" + this.BookCover + "|" + this.BookPulisher + "|" + this.BookTopic + "|" + this.bookContent + "|" + this.BookAuthor);
+        },
+
+        changeListData(){
+            this.ListBook = [{
+                BookId : "BOOK6",
+                Name : "Hàn vạn câu hỏi tại sao 3",
+                Publisher : "Tuổi trẻ",
+                Author : "Nguyễn Du",
+                Topic : "Cuộc sống"
+            }]
         }
     }
 }
