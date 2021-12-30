@@ -14,9 +14,9 @@
                         <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
                     </div>
                     <div id="descripsionBook">
-                        <h3>{{book.tittle}}</h3>
-                        <p>- Xuất bản năm 2000</p>
-                        <p>- Của Diệp Vấn</p>
+                        <p>{{book.nameDocument}}</p>
+                        <p>Số trang: {{book.pageNumber}}</p>
+                        <p>Tác giả: {{book.authorData.nameAuthor}}</p>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
         }
         
         .detailBooks {
-            width: 300px;
+            width: 350px;
             margin: 10px;
             cursor: pointer;
         }
@@ -133,6 +133,7 @@
 import HeaderUser from './HeaderUserComponent.vue'
 import FooterUser from './FooterUserComponent.vue'
 import RightNavigation from './RightNavigation.vue'
+import axios from 'axios'
 
 export default {
   name: 'home',
@@ -143,41 +144,24 @@ export default {
   },
     data:function() {
         return {
-            ListBook: [{
-                id: 1,
-                tittle: 'Mười vạn câu hỏi tại sao',
-                url: 'Https://google.com'
-            }, {
-                id: 2,
-                tittle: 'Mười vạn câu hỏi tại sao',
-                url: 'Https://google.com'
-            }, {
-                id: 3,
-                tittle: 'Mười vạn câu hỏi tại sao',
-                url: 'Https://google.com'
-            }, {
-                id: 4,
-                tittle: 'Mười vạn câu hỏi tại sao',
-                url: 'Https://google.com'
-            }, {
-                id: 5,
-                tittle: 'Mười vạn câu hỏi tại sao',
-                url: 'Https://google.com'
-            }, {
-                id: 5,
-                tittle: 'Mười vạn câu hỏi tại sao',
-                url: 'Https://google.com'
-            }]
+            ListBook: [],
+            dataReady: false,
         }
     },
+    async mounted(){
+        let data = await axios.get("http://localhost:8080/api/get-detail-document?id=" + this.$route.query.id);
+        this.ListBook = data.data.listDocs;
+        //this.ListBook = data.listDocs;
+        this.dataReady = true;
+    },
     async created() {
-        console.log(new URL(location.href).searchParams.get('page'));
+        //console.log(new URL(location.href).searchParams.get('page'));
     },
     methods:{
         GoToDetail(id){
             this.$router.push({
                 path: 'detail', 
-                query: { book: id }
+                query: { id: id }
             });
         }
     }

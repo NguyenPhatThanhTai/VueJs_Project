@@ -129,8 +129,8 @@
         }
     },
     async mounted(){
-            let data = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
-            this.data = data.data.time.updated;
+            let data = await axios.get("http://localhost:8080/api/get-document-by-id?id=" + this.$route.query.id);
+            this.data = data.data.doc.content;
             // this.$cookies.set("data", data.data.time.updated, "1h");// làm việc với cookie
             // this.data = this.$cookies.get("data");
             var that = this;
