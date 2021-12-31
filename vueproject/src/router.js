@@ -4,6 +4,8 @@ import detail from './components/Detail.vue'
 import Home from './components/Home.vue'
 import Read from './components/Read.vue'
 import BookManagment from "./components/Adm/BookManagment.vue";
+import Category from "./components/Category.vue";
+import DetailCategory from "./components/DetailCategory.vue";
 
 Vue.use(VueRouter)
 
@@ -13,7 +15,11 @@ export const router = new VueRouter({
         { path: '/', component: Home },
         { path: '/detail', component: detail },
         { path: '/read', component: Read },
+        { path: '/Category', component: Category },
+        { path: '/Category/detail', component: DetailCategory },
+
         // Adm  
         { path: '/Adm/BookManagment', component: BookManagment },
+        
     ]
 })

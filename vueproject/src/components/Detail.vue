@@ -4,11 +4,9 @@
     <main id="UserMain">
       <div class="left_content">
         <div class="book">
-          <div class="detailBook">
+          <div class="detailBookchild">
             <div id="coverBook">
-              <img
-                src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg"
-              />
+              <img v-bind:src="'' + image" />
             </div>
             <div id="descripsionBook">
               <h1>{{ bookId }}</h1>
@@ -23,7 +21,7 @@
           <div class="scriptAboutBook">
             <h3><b>- Lời nói đầu</b></h3>
             <p>
-              {{bookDetail.smallDescription}}
+              {{ bookDetail.smallDescription }}
               <a
                 href="#"
                 style="text-decoration: none; color: rgb(26, 141, 187)"
@@ -40,27 +38,28 @@
 </template>
 
 <style>
-.detailBook {
+.detailBookchild {
+  width: 100%;
   margin: 50px 10px 50px 10px;
   display: flex;
   justify-content: center;
 }
 
-.detailBook #coverBook img {
+.detailBookchild #coverBook img {
   width: 300px;
 }
 
-.detailBook #descripsionBook {
+.detailBookchild #descripsionBook {
   padding: 10px 10px 10px 30px;
   line-height: 50px;
   position: relative;
 }
 
-.detailBook #descripsionBook h1 {
+.detailBookchild #descripsionBook h1 {
   color: rgb(15, 124, 214);
 }
 
-.detailBook #descripsionBook a {
+.detailBookchild #descripsionBook a {
   padding: 5px;
   border-radius: 8px;
   background-color: rgb(85, 163, 236);
@@ -73,7 +72,7 @@
   cursor: pointer;
 }
 
-.detailBook #descripsionBook a:hover {
+.detailBookchild #descripsionBook a:hover {
   background-color: rgb(49, 141, 226);
 }
 
@@ -114,11 +113,11 @@
     margin: 0;
     position: relative;
   }
-  .detailBook {
+  .detailBookchild {
     width: 100%;
     margin: 10px;
   }
-  .detailBook #coverBook img {
+  .detailBookchild #coverBook img {
     width: 150px;
     margin: 10px;
   }
@@ -131,7 +130,7 @@
   .left_content {
     width: 100%;
   }
-  .detailBook #descripsionBook a {
+  .detailBookchild #descripsionBook a {
     position: relative;
     display: inline-block;
   }
@@ -155,6 +154,7 @@ export default {
     return {
       bookId: "",
       bookDetail: {},
+      image: "",
     };
   },
   async mounted() {
@@ -162,6 +162,7 @@ export default {
       "http://localhost:8080/api/get-detail-document?id=" + this.$route.query.id
     );
     this.bookDetail = data.data.info;
+    this.image = data.data.info.imageDocument;
     //this.ListBook = data.listDocs;
     this.dataReady = true;
   },

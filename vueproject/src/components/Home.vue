@@ -19,9 +19,7 @@
             v-on:click="GoToDetail(book.id)"
           >
             <div id="coverBook">
-              <img
-                src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg"
-              />
+              <img v-bind:src="'' + book.imageDocument" />
             </div>
             <div id="descripsionBook">
               <p>{{ book.nameDocument }}</p>
@@ -99,23 +97,11 @@
 
 .detailBooks #descripsionBook h3 {
   color: rgb(31, 117, 187);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  /* number of lines to show */
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
+  
 }
 
 .detailBook #descripsionBook p {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  /* number of lines to show */
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
+  
 }
 
 .left_content {
