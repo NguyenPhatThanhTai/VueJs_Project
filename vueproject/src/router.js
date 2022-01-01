@@ -8,6 +8,8 @@ import Category from "./components/Category.vue";
 import DetailCategory from "./components/DetailCategory.vue";
 import Login from "./components/Login.vue";
 import Signup from "./components/Signup.vue";
+import Author from "./components/Author.vue";
+import DetailAuthor from "./components/DetailAuthor.vue";
 
 Vue.use(VueRouter)
 
@@ -17,8 +19,10 @@ export const router = new VueRouter({
         { path: '/', component: Home },
         { path: '/detail', component: detail },
         { path: '/read', component: Read },
-        { path: '/Category', component: Category },
-        { path: '/Category/detail', component: DetailCategory },
+        { path: '/category', component: Category },
+        { path: '/category/detail', component: DetailCategory },
+        { path: '/author', component: Author },
+        { path: '/author/detail', component: DetailAuthor },
 
         //User
         {path: '/login', component: Login},

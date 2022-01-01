@@ -92,7 +92,7 @@ export default {
   methods:{
     GoToDetail(id){
         this.$router.push({
-            path: 'Category/detail', 
+            path: 'category/detail', 
             query: { cate: id }
         });
     }
