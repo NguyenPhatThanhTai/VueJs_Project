@@ -5,10 +5,11 @@
         <div class="left_content">
             <div class="decripsionCategory">
                 <div id="pic">
-                    <img v-bind:src="'' + data.image" /> 
+                    <img v-bind:src="'' + infoCate.imageCategory" /> 
                 </div>
                 <div id="scripsion">
-                    <p>{{data.description}}</p>
+                    <h1>{{infoCate.nameCategory}}</h1>
+                    <p>{{infoCate.description}}</p>
                     <p></p>
                 </div>
             </div>
@@ -20,7 +21,7 @@
                         v-on:click="GoToDetail(cate.categoryData.id)"
                     >
                         <div id="coverBook">
-                            <img v-bind:src="'' + data.imageDoc" />
+                            <img v-bind:src="'' + cate.categoryData.imageDocument" />
                         </div>
                         <div id="descripsionBook">
                             <h3>{{cate.categoryData.id}}</h3>
@@ -272,19 +273,21 @@ export default {
   data: function(){
     return {
       data : null,
-      description: '',
-      image: '',
-      imageDoc: '',
+      infoCate : null,
     }
   },
   async mounted() {
     let data = await axios.get(
       "http://localhost:8080/api/get-doc-by-category?id=" + this.$route.query.cate
     );
+
+    let infoCate = await axios.get(
+      "http://localhost:8080/api/get-info-category?id=" + this.$route.query.cate
+    );
+
     this.data = data.data.info;
-    this.data.description = data.data.info[0].description;
-    this.data.image = data.data.info[0].imageCategory;
-    this.data.imageDoc = data.data.info[0].categoryData.imageDocument;
+
+    this.infoCate = infoCate.data.info;
     //this.ListBook = data.listDocs;
     this.dataReady = true;
     console.log(this.data);

@@ -129,6 +129,9 @@ import HeaderUser from "./HeaderUserComponent.vue";
 import FooterUser from "./FooterUserComponent.vue";
 import RightNavigation from "./RightNavigation.vue";
 import axios from "axios";
+import VueSession from 'vue-session';
+import Vue from 'vue';
+Vue.use(VueSession)
 
 export default {
   name: "home",
@@ -152,6 +155,7 @@ export default {
   },
   async created() {
     //console.log(new URL(location.href).searchParams.get('page'));
+    console.log(this.$session.get('user'));
   },
   methods: {
     GoToDetail(id) {
