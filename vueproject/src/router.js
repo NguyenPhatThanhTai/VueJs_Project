@@ -10,6 +10,7 @@ import Login from "./components/Login.vue";
 import Signup from "./components/Signup.vue";
 import Author from "./components/Author.vue";
 import DetailAuthor from "./components/DetailAuthor.vue";
+import UserInfomation from "./components/UserInfomation.vue";
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,7 @@ export const router = new VueRouter({
         //User
         {path: '/login', component: Login},
         {path: '/signup', component: Signup},
+        {path: '/user-infomation', component: UserInfomation},
 
         // Adm  
         { path: '/Adm/BookManagment', component: BookManagment },
