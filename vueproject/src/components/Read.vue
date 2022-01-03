@@ -3,6 +3,12 @@
         <HeaderUser/>
         <main id="UserMain">
         <FwTurn/>
+            <div class="toolBar" v-on:click="saveDoc" v-if="isSaved == true">
+                <button>Lưu sách này</button>
+            </div>
+            <div class="toolBar" v-on:click="saveDoc" v-if="isSaved == false">
+                <button>Huỷ lưu sách này</button>
+            </div>
             <div class="read">
                 <div id="loading" v-if="dataReady == false">
                     <div>
@@ -88,6 +94,20 @@
             display: block;
             text-align: center;
         }
+
+        .toolBar{
+            text-align: center;
+        }
+
+        .toolBar button{
+            margin: 10px;
+            padding: 10px;
+            background-color: rgb(69, 161, 223);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+        }
+
 </style>
 
 <script>
@@ -108,16 +128,28 @@
         return{
             data: null,
             imageDoc: null,
-            dataReady : false
+            dataReady : false,
+            isSaved: false,
         }
     },
     async mounted(){
+            if(this.$session.get('user') == null){
+                this.$router.push('/login')
+            }
+
             let data = await axios.get("http://localhost:8080/api/get-document-by-id?id=" + this.$route.query.id);
             this.imageDoc = data.data.doc.imageDocument;
             this.data = data.data.doc.content;
             
             this.data = this.data.replace(/\n/g, "<br>");
             this.data = this.data.match(/.{1,1330}(\s|$)/g);
+            
+            let isSavedDoc = await axios.get("http://localhost:8080/api/check-saved-document?documentId="+this.$route.query.id+"&userId="+this.$session.get('user').id );
+            if(isSavedDoc.data.message == "Not saved"){
+                this.isSaved = true;
+            }else{
+                this.isSaved = false;
+            }
             
             // this.$cookies.set("data", data.data.time.updated, "1h");// làm việc với cookie
             // this.data = this.$cookies.get("data");
@@ -163,6 +195,26 @@
             else if (e.keyCode == 39)
                 $('#magazine').turn('next');
         });
+        },
+        async saveDoc() {
+            let bookId = this.$route.query.id;
+            let id = this.$session.get('user').id;
+            let data = await axios.post("http://localhost:8080/api/save-document", {
+                userId: id,
+                documentId: bookId
+            });
+            if(data.data.message == "Saved document"){
+                alert("Lưu thành công !");
+            }else{
+                alert("Huỷ lưu thành công !");
+            }
+            
+            let isSavedDoc = await axios.get("http://localhost:8080/api/check-saved-document?documentId="+this.$route.query.id+"&userId="+this.$session.get('user').id );
+            if(isSavedDoc.data.message == "Not saved"){
+                this.isSaved = true;
+            }else{
+                this.isSaved = false;
+            }
         }
     }
 }

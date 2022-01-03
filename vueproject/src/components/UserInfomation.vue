@@ -373,6 +373,10 @@ export default {
     }
   },
   async mounted(){
+        if(this.$session.get('user') == null){
+            this.$router.push('/login')
+        }
+
         let idUser = this.$session.get('user');
         console.log("asda", idUser);
         let userInfo = await axios.get('http://localhost:8080/api/get-info-user?id=' + idUser.id);
