@@ -6,19 +6,19 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href=""><span class="las la-igloo"></span>
+                    <a href="/Adm/BookManagment"><span class="las la-igloo"></span>
                     <span>Quản lý sách</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-user"></span>
-                    <span>Quản lý chủ đề</span></a>
-                </li>
-                <li>
-                    <a href=""><span class="las la-clipboard-list"></span>
+                    <a href="/Adm/AuthorManagment"><span class="las la-user"></span>
                     <span>Quản lý tác giả</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-shopping-bag"></span>
+                    <a href="/Adm/CategoryManagment"><span class="las la-clipboard-list"></span>
+                    <span>Quản lý chủ đề</span></a>
+                </li>
+                <li>
+                    <a href="/Adm/PublisherManagment"><span class="las la-shopping-bag"></span>
                     <span>Quản lý nhà xuất bản</span></a>
                 </li>
                 <li>

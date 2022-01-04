@@ -6,64 +6,35 @@
         <HeaderAdm/>
         <main id="AdmMain">
             <div class="tittle">
-                <h3>Quản lý sách</h3>
+                <h3>Quản lý chủ đề, thể loại</h3>
             </div>
 
             <div class="inputContain">
-                <form v-on:submit.prevent="savedBook" method="post">
+                <form v-on:submit.prevent="savedCategory" method="post">
                     <div class="leftInput">
-                        <input type="text" name="BookName" placeholder="Tên sách mới" required>
-                        <input type="text" name="BookCover" placeholder="URL ảnh bìa sách" required>
-                        <input type="text" name="BookDescription" placeholder="Miêu tả ngắn về sách" required>
-                        <ckeditor v-model="bookContent" :config="editorConfig"></ckeditor>
-                            <select required id="AUT" name="BookAuthor" v-model="dataAuthor">
-                                <option value="null" disabled selected>--Chọn tác giả--</option>
-                                <option v-for="au in listAuthor"
-                                    v-bind:value="au.id"
-                                    v-bind:key="au.id"
-                                >{{au.nameAuthor}}</option>
-                            </select>
-                            <select required id="NXB" name="BookPublisher" v-model="dataPublisher">
-                                <option value="null" disabled selected>--Chọn nhà xuất bản--</option>
-                                <option v-for="pub in listPublisher" 
-                                    v-bind:value="pub.id"
-                                    v-bind:key="pub.id"
-                                >{{pub.namePublisher}}</option>
-                                
-                            </select>
-                            <select required id="CD" name="BookTopic" v-model="dataCategory">
-                                <option value="null" disabled selected>--Chọn chủ đề--</option>
-                                <option v-for="cate in listCategory" 
-                                    v-bind:value="cate.id"
-                                    v-bind:key="cate.id"
-                                >{{cate.nameCategory}}</option>
-                                
-                            </select>
+                        <input type="text" name="CategoryName" placeholder="Tên thể loại, chủ đề mới" required>
+                        <input type="text" name="CategoryCover" placeholder="URL ảnh thể loại, chủ đề" required>
+                        <input type="text" name="CategoryDescription" placeholder="Miêu tả ngắn về thể loại, chủ đề" required>
                     </div>
-                    <input class="submit" type="submit" value="Thêm sách">
+                    <input class="submit" type="submit" value="Thêm thể loại, chủ đề">
                 </form>
                 <div style="clear: both;"></div>
                 <div class="listCourse">
                     <table>
                         <tr>
-                            <th>Mã sách</th>
-                            <th>Tiêu đề sách</th>
-                            <th>Nội dung</th>
-                            <th>Nhà xuất bản</th>
-                            <th>Tác giả</th>
-                            <th>Thể loại</th>
-                            <th>Hành động</th>
+                            <th>Mã thể loại, chủ đề</th>
+                            <th>Tên thể loại, chủ đề</th>
+                            <th>URL ảnh thể loại, chủ đề</th>
+                            <th>Miêu tả ngắn về thể loại, chủ đề</th>
                         </tr>
-                        <tr v-for="doc in listDoc" v-bind:key="doc.id">
-                            <td>{{doc.id}}</td>
-                            <td>{{doc.nameDocument}}</td>
-                            <td>{{doc.imageDocument}}</td>
-                            <td>{{doc.publisherData.namePublisher}}</td>
-                            <td>{{doc.authorData.nameAuthor}}</td>
-                            <td>{{doc.categoryData.nameCategory}}</td>
+                        <tr v-for="cate in listCategory" v-bind:key="cate.id">
+                            <td>{{cate.id}}</td>
+                            <td>{{cate.nameCategory}}</td>
+                            <td>{{cate.imageCategory}}</td>
+                            <td>{{cate.description}}</td>
                             <td>
-                                <p id="detail" class="clickUpdate" v-on:click="OpenPopupForChanceUser(doc.id)">Sửa</p>
-                                <p id="delete" v-on:click="deleteDoc(doc.id)">Xóa</p>
+                                <p id="detail" class="clickUpdate" v-on:click="OpenPopupForChanceUser(cate.id)">Sửa</p>
+                                <p id="delete" v-on:click="deleteCate(cate.id)">Xóa</p>
                             </td>
                         </tr>
                     </table>
@@ -75,40 +46,16 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <span class="close" v-on:click="ClosePopupForChanceUser">&times;</span>
-                        <h2>Cập nhật sách</h2>
+                        <h2>Cập nhật thể loại, chủ đề</h2>
                     </div>
                     <div class="modal-body">
-                        <form v-on:submit.prevent="editDoc" method="post">
+                        <form v-on:submit.prevent="editCate" method="post">
                             <div class="leftInput">
-                                <input type="text" name="BookNameEdit" placeholder="Tên sách mới" required v-model="docDataEdit.nameDocument">
-                                <input type="text" name="BookCoverEdit" placeholder="URL ảnh bìa sách" required v-model="docDataEdit.imageDocument">
-                                <input type="text" name="SmallDescriptionEdit" placeholder="Miêu tả ngắn về sách" required v-model="docDataEdit.smallDescription">
-                                <ckeditor v-model="bookContentEdit" :config="editorConfig"></ckeditor>
-                                <select required id="AUT" name="BookAuthor" v-model="dataAuthorEdit">
-                                <option value="null" disabled selected>--Chọn tác giả--</option>
-                                <option v-for="au in listAuthor"
-                                    v-bind:value="au.id"
-                                    v-bind:key="au.id"
-                                >{{au.nameAuthor}}</option>
-                                </select>
-                                <select required id="NXB" name="BookPublisher" v-model="dataPublisherEdit">
-                                    <option value="null" disabled selected>--Chọn nhà xuất bản--</option>
-                                    <option v-for="pub in listPublisher" 
-                                        v-bind:value="pub.id"
-                                        v-bind:key="pub.id"
-                                    >{{pub.namePublisher}}</option>
-                                    
-                                </select>
-                                <select required id="CD" name="BookTopic" v-model="dataCategoryEdit">
-                                    <option value="null" disabled selected>--Chọn chủ đề--</option>
-                                    <option v-for="cate in listCategory" 
-                                        v-bind:value="cate.id"
-                                        v-bind:key="cate.id"
-                                    >{{cate.nameCategory}}</option>
-                                    
-                                </select>
+                                <input type="text" name="CategoryNameEdit" placeholder="Tên thể loại, chủ đề" required v-model="cateDataEdit.nameCategory">
+                                <input type="text" name="CategoryCoverEdit" placeholder="URL ảnh thể loại, chủ đề" required v-model="cateDataEdit.imageCategory">
+                                <input type="text" name="CategoryDescriptionEdit" placeholder="Miêu tả ngắn về thể loại, chủ đề" required v-model="cateDataEdit.description">
                             </div>
-                            <input class="submit" type="submit" value="Sửa sách">
+                            <input class="submit" type="submit" value="Sửa thể loại, chủ đề">
                         </form>
                     </div>
                 </div>
@@ -118,12 +65,9 @@
 </div>
 </template>
 <script>
-    import Vue from 'vue'
     import HeaderAdm from './HeaderAdmComponent.vue'
     import SidebarAdm from './SidebarAdmComponent.vue'
     import axios from 'axios'
-    import CKEditor from 'ckeditor4-vue';
-    Vue.use(CKEditor)
 
     export default {
     name: 'BookManagment',
@@ -133,34 +77,20 @@
     },
     data: function(){
         return{
-            listAuthor: [],
-            listPublisher: [],
             listCategory: [],
-            listDoc: [],
-            dataAuthor: null,
-            dataPublisher: null,
+    
             dataCategory: null,
-            bookContent: null,
-            BookDescription: null,
-
+            
             openPopup : false,
-            docDataEdit: null,
+            cateDataEdit: null,
+
             dataAuthorEdit: null,
-            dataPublisherEdit: null,
-            dataCategoryEdit: null,
-            bookContentEdit: null,
         }
     },
     async mounted(){
-        let listAuthor = await axios.get('http://localhost:8080/api/get-list-author');
-        let listPublisher = await axios.get('http://localhost:8080/api/get-list-publisher');
         let listCategory = await axios.get('http://localhost:8080/api/get-list-category');
-        let listDoc = await axios.get('http://localhost:8080/api/get-list-documents');
 
-        this.listAuthor = listAuthor.data.info;
-        this.listPublisher = listPublisher.data.info;
         this.listCategory = listCategory.data.info;
-        this.listDoc = listDoc.data.listDocs;
     },
     async created(){
         
@@ -173,72 +103,62 @@
         ClosePopupForChanceUser(){
             this.openPopup = false;
         },
-        async savedBook(e) {
-            var nameDocument = e.target.elements.BookName.value;
-            var smallDescription = e.target.elements.BookDescription.value;
-            var imageDocument = e.target.elements.BookCover.value;
+        async savedCategory(e) {
+            var nameCategory = e.target.elements.CategoryName.value;
+            var imageCategory = e.target.elements.CategoryCover.value;
+            var description = e.target.elements.CategoryDescription.value;
             
-            let data = await axios.post('http://localhost:8080/api/create-new-document', {
-                nameDocument: nameDocument,
-                content: this.bookContent,
-                smallDescription: smallDescription,
-                imageDocument: imageDocument,
-                publisherId: this.dataPublisher,
-                authorId: this.dataAuthor,
-                categoryId: this.dataCategory
+            let data = await axios.post('http://localhost:8080/api/create-new-category', {
+                nameCategory: nameCategory,
+                imageCategory: imageCategory,
+                description: description,
             });
             if(data.data.errMessage == "Error from server..."){
-                alert("Thêm sách thất bại !");
+                alert("Thêm thể loại, chủ đề thất bại !");
             }else{
-                alert("Thêm sách thành công !");
+                let listCategory = await axios.get('http://localhost:8080/api/get-list-category');
+
+                this.listCategory = listCategory.data.info;
+                
+                alert("Thêm thể loại, chủ đề thành công !");
             }
         },
-        async deleteDoc(id){
-            let data = await axios.delete('http://localhost:8080/api/delete-document?id=' + id);
+        async deleteCate(id){
+            let data = await axios.delete('http://localhost:8080/api/delete-category?id=' + id);
 
             if(data.data.errMessage == "Error from server..."){
-                alert("Xóa sách thất bại !");
+                alert("Xóa thể loại, chủ đề thất bại !");
             }else{
-                let listDoc = await axios.get('http://localhost:8080/api/get-list-documents');
+                let listCategory = await axios.get('http://localhost:8080/api/get-list-category');
 
-                this.listDoc = listDoc.data.listDocs;
+                this.listCategory = listCategory.data.info;
 
-                alert("Xóa sách thành công !");
+                alert("Xóa thể loại, chủ đề thành công !");
             }
         },
         async getDetailToEdit(id) {
-            let data = await axios.get('http://localhost:8080/api/get-detail-document?id=' + id);
-            let contentDoc = await axios.get('http://localhost:8080/api/get-document-by-id?id=' + id);
+            let data = await axios.get('http://localhost:8080/api/get-info-category?id=' + id);
 
-            this.docDataEdit = data.data.info;
+            this.cateDataEdit = data.data.info;
             this.openPopup = true;
-
-            this.dataAuthorEdit = this.docDataEdit.authorId;
-            this.dataPublisherEdit = this.docDataEdit.publisherId;
-            this.dataCategoryEdit = this.docDataEdit.categoryId;
-            this.bookContentEdit = contentDoc.data.doc.content;
         },
-        async editDoc(e){
-            var nameDocument = e.target.elements.BookNameEdit.value;
-            var smallDescription = e.target.elements.SmallDescriptionEdit.value;
-            var imageDocument = e.target.elements.BookCoverEdit.value;
+        async editCate(e){
+            var nameCategory = e.target.elements.CategoryNameEdit.value;
+            var imageCategory = e.target.elements.CategoryCoverEdit.value;
+            var description = e.target.elements.CategoryDescriptionEdit.value;
 
-            let data = await axios.put('http://localhost:8080/api/edit-document', {
-                id: this.docDataEdit.id,
-                nameDocument: nameDocument,
-                content: this.bookContentEdit,
-                smallDescription: smallDescription,
-                imageDocument: imageDocument,
-                publisherId: this.dataPublisherEdit,
-                authorId: this.dataAuthorEdit,
-                categoryId: this.dataCategoryEdit
+            let data = await axios.put('http://localhost:8080/api/edit-category', {
+                id: this.cateDataEdit.id,
+                nameCategory: nameCategory,
+                imageCategory: imageCategory,
+                description: description,
             });
             if(data.data.errMessage == "Error from server..."){
-                alert("Sửa sách thất bại !");
+                alert("Sửa thể loại, chủ đề thất bại !");
             }else{
-                alert("Sửa sách thành công !");
-                let listDoc = await axios.get('http://localhost:8080/api/get-list-documents');
-                this.listDoc = listDoc.data.listDocs;
+                alert("Sửa thể loại, chủ đề thành công !");
+                let listCategory = await axios.get('http://localhost:8080/api/get-list-category');
+                this.listCategory = listCategory.data.info;
 
                 this.openPopup = false;
             }

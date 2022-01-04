@@ -11,6 +11,9 @@ import Signup from "./components/Signup.vue";
 import Author from "./components/Author.vue";
 import DetailAuthor from "./components/DetailAuthor.vue";
 import UserInfomation from "./components/UserInfomation.vue";
+import AuthorManagment from "./components/Adm/AuthorManagment.vue";
+import CategoryManagment from "./components/Adm/CategoryManagment.vue";
+import PublisherManagment from "./components/Adm/PublisherManagment.vue";
 
 Vue.use(VueRouter)
 
@@ -32,6 +35,8 @@ export const router = new VueRouter({
 
         // Adm  
         { path: '/Adm/BookManagment', component: BookManagment },
-        
+        { path: '/Adm/AuthorManagment', component: AuthorManagment },
+        { path: '/Adm/CategoryManagment', component: CategoryManagment },
+        { path: '/Adm/PublisherManagment', component: PublisherManagment },
     ]
 })
