@@ -54,6 +54,10 @@
         }
     },
     async mounted(){
+        if(this.$session.get('admin') == null){
+            this.$router.push('/Adm/loginAdm')
+        }
+        
         let listUser = await axios.get('http://localhost:8080/api/get-user');
 
         this.listUser = listUser.data.data;

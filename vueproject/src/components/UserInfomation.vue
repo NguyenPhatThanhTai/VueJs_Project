@@ -28,104 +28,21 @@
             </div>
             <div class="UserSavedBook">
                 <div class="listBook">
-                    <div class="detailBook">
+                    <div class="detailBook"
+                        v-for="savedBook in savedDoc"
+                        v-bind:key="savedBook.id"
+                        v-bind:detail="savedBook"
+                        v-on:click="GoToDetail(savedBook.documentId)"
+                    >
                         <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
+                            <img v-bind:src="'' + savedBook.documentData.imageDocument" />
                         </div>
+                        
                         <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
-                        </div>
-                    </div>
-                    <div class="detailBook">
-                        <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                        </div>
-                        <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
-                        </div>
-                    </div>
-                    <div class="detailBook">
-                        <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                        </div>
-                        <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
-                        </div>
-                    </div>
-                    <div class="detailBook">
-                        <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                        </div>
-                        <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
-                        </div>
-                    </div>
-                    <div class="detailBook">
-                        <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                        </div>
-                        <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
-                        </div>
-                    </div>
-                    <div class="detailBook">
-                        <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                        </div>
-                        <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
-                        </div>
-                    </div>
-                    <div class="detailBook">
-                        <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                        </div>
-                        <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
-                        </div>
-                    </div>
-                    <div class="detailBook">
-                        <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                        </div>
-                        <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
-                        </div>
-                    </div>
-                    <div class="detailBook">
-                        <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                        </div>
-                        <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
-                        </div>
-                    </div>
-                    <div class="detailBook">
-                        <div id="coverBook">
-                            <img src="https://firstnews.com.vn/public/uploads/products/dac-nhan-tam-biamem2019-76k-bia11.jpg">
-                        </div>
-                        <div id="descripsionBook">
-                            <h3>Đắc nhân tâm</h3>
-                            <p>- Xuất bản năm 2000</p>
-                            <p>- Của Diệp Vấn</p>
+                            
+                            <h3>{{savedBook.documentData.nameDocument}}</h3>
+                            <p>Số trang: {{savedBook.documentData.pageNumber}}</p>
+                            <p>Tác giả: {{savedBook.documentData.authorData.nameAuthor}}</p>
                         </div>
                     </div>
                 </div>
@@ -370,6 +287,7 @@ export default {
     return {
       openPopup : false,
       user : null,
+      savedDoc: null,
     }
   },
   async mounted(){
@@ -378,11 +296,14 @@ export default {
         }
 
         let idUser = this.$session.get('user');
-        console.log("asda", idUser);
         let userInfo = await axios.get('http://localhost:8080/api/get-info-user?id=' + idUser.id);
         
         this.user = userInfo.data.user;
         
+        let savedDocInfo = await axios.get('http://localhost:8080/api/get-all-saved-document?id=' + idUser.id);
+
+        this.savedDoc = savedDocInfo.data.message;
+        console.log('savedDoc', this.savedDoc);
   },
   async created() {
     this.bookId = this.$route.query.book
@@ -392,6 +313,12 @@ export default {
         this.$router.push({
             path: 'read', 
             query: { book: id }
+        });
+    },
+    GoToDetail(id){
+        this.$router.push({
+            path: 'detail', 
+            query: { id: id }
         });
     },
     OpenPopupForChanceUser(){

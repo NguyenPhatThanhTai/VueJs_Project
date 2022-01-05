@@ -22,7 +22,7 @@
                     <span>Quản lý nhà xuất bản</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-receipt"></span>
+                    <a href="/Adm/UserManagment"><span class="las la-receipt"></span>
                     <span>Quản lý người dùng</span></a>
                 </li>
             </ul>

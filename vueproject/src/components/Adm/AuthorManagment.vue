@@ -91,6 +91,10 @@
         }
     },
     async mounted(){
+        if(this.$session.get('admin') == null){
+            this.$router.push('/Adm/loginAdm')
+        }
+
         let listAuthor = await axios.get('http://localhost:8080/api/get-list-author');
 
         this.listAuthor = listAuthor.data.info;
