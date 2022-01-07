@@ -117,6 +117,7 @@ export default {
     },
     async mounted() {
         // this.getData();
+        this.$session.destroy('user');
     },
     async created() {
         

@@ -4,15 +4,43 @@
             <div class="headerNavigation">
                 <ul>
                     <li><router-link to="/">Trang chủ</router-link></li>
-                    <li><router-link to="/detail">Thư viện sách</router-link></li>
-                    <li><a href="#contact">Thể loại</a></li>
-                    <li><a href="#about">Review sách</a></li>
-                    <li><a href="#about">Tác giả</a></li>
-                    <li><a href="#about">Liên hệ</a></li>
+                    <li><router-link to="/category">Thể loại</router-link></li>
+                    <li><router-link to="/author">Tác giả</router-link></li>
+
+                    <li v-if="checkLogin"><router-link to="/user-infomation">{{nameUser}}</router-link></li>
+                    <li v-else><router-link to="/login">Đăng nhập</router-link></li>
+
+                    <li v-if="checkLogin"><router-link to="/login">Đăng xuất</router-link></li>
                 </ul>
             </div>
         </header>
 </template>
+
+<script>
+    export default {
+        name: "HeaderUser",
+        data() {
+            return {
+                //
+                checkLogin: false,
+                nameUser: null,
+            }
+        },
+
+        async mounted() {
+            if(this.$session.get('user') == null){
+                this.checkLogin = false;
+            }else{
+                this.checkLogin = true;
+            }
+            this.nameUser = this.$session.get('user').lastName + " " + this.$session.get('user').firstName;
+        },
+
+        methods: {
+            //
+        }
+    }
+</script>
 
 <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
@@ -86,7 +114,7 @@
         
         .footer {
             width: 100%;
-            height: 350px;
+            height: 200px;
             background-color: rgb(231, 231, 231);
             text-align: center;
             display: flex;

@@ -1,28 +1,24 @@
 <template>
     <div class="footer">
-        <div class="category">
-            <h3>Thể loại</h3>
-            <a>Thể loại 1</a>
-            <a>Thể loại 1</a>
-            <a>Thể loại 1</a>
-            <a>Thể loại 1</a>
-            <a>Thể loại 1</a>
-        </div>
-        <div class="outStandingBook">
-            <h3>Tác phẩm nổi bật</h3>
-            <a>Tác phẩm nổi bật 1</a>
-            <a>Tác phẩm nổi bật 1</a>
-            <a>Tác phẩm nổi bật 1</a>
-            <a>Tác phẩm nổi bật 1</a>
-            <a>Tác phẩm nổi bật 1</a>
-        </div>
-        <div class="readBookOnline">
-            <h3>Đọc sách hay online</h3>
-            <a>Đọc sách hay online 1</a>
-            <a>Đọc sách hay online 1</a>
-            <a>Đọc sách hay online 1</a>
-            <a>Đọc sách hay online 1</a>
-            <a>Đọc sách hay online 1</a>
+        <div id="footer-content">
+                <div id="logo">
+                    <img src="">
+                    <b><i><span style="color: #5271ff;">Hutech</span><span style="color: #f8d24e;"> - Ngôn ngữ mới</span></i></b>
+                </div>
+                <div id="about">
+                    <h3>Thành viên thực hiện</h3>
+                    <ul>
+                        <li>
+                            <p>Nhóm 9</p>
+                        </li>
+                    </ul>
+                </div>
+            <div id="descripsion">
+                <p>
+                    <b style="color: #f8d24e;"></b>
+                    <b style="color: #f8d24e;"></b>
+                </p>
+            </div>
         </div>
     </div>
 </template>

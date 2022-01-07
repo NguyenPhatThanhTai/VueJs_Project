@@ -23,7 +23,7 @@
             </div>
             <div id="descripsionBook">
               <p>{{ book.nameDocument }}</p>
-              <p>Số trang: {{ book.pageNumber }}</p>
+              <!-- <p>Số trang: {{ book.pageNumber }}</p> -->
               <p>Tác giả: {{ book.authorData.nameAuthor }}</p>
             </div>
           </div>

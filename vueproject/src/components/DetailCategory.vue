@@ -203,7 +203,7 @@
     
     .footer {
         width: 100%;
-        height: 350px;
+        height: 200px;
         background-color: rgb(231, 231, 231);
         text-align: center;
         display: flex;

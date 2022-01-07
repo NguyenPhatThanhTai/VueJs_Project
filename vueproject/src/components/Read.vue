@@ -23,7 +23,7 @@
                     <div v-for="page in data"
                         v-bind:key="page.id"
                     >
-                        <p v-html="page"></p>
+                        <p id="single-page" v-html="page"></p>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             box-shadow: 5px 10px;
         }
         
-        #magazine p {
+        #magazine #single-page {
             padding: 10px;
             border-left: 1px solid gray;
         }

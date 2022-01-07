@@ -6,51 +6,45 @@
             </div>
             <div id="content">
                 <ul>
-                    <li>
-                        <a href="#">Sách mới ra mắt 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Sách mới ra mắt 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Sách mới ra mắt 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Sách mới ra mắt 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Sách mới ra mắt 1</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="box_content">
-            <div id="header">
-                <h3>Sách nổi bật</h3>
-            </div>
-            <div id="content">
-                <ul>
-                    <li>
-                        <a href="#">Sách nổi bật 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Sách nổi bật 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Sách nổi bật 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Sách nổi bật 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Sách nổi bật 1</a>
+                    <li v-for="book in ListBook"
+                        v-bind:key="book.id"
+                        v-bind:detail="book"
+                        v-on:click="GoToDetail(book.id)">
+                        <a href="#">{{ book.nameDocument }}</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import axios from "axios";
+
+    export default {
+        name: "RightNavigation",
+        data() {
+            return {
+                //
+                ListBook: [],
+            }
+        },
+
+        async mounted() {
+            let data = await axios.get("http://localhost:8080/api/get-document-by-order");
+            this.ListBook = data.data.listDocsByOrder;
+        },
+
+        methods: {
+            GoToDetail(id) {
+            this.$router.push({
+                path: "detail",
+                query: { id: id },
+            });
+            },
+        }
+    }
+</script>
 
 <style>
     .right_content {
