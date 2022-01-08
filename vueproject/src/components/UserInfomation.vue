@@ -5,7 +5,7 @@
         <div class="left_content">
             <div class="user">
                 <div id="welcome">
-                    <h3>Xin chào, {{user.firstName + ' ' + user.lastName}}</h3>
+                    <h3>Xin chào, {{user.lastName + ' ' + user.firstName}}</h3>
                     <img v-bind:src="'' + user.imageUser" />
                 </div>
                 <div id="userDetail">

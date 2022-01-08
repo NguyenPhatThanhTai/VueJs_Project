@@ -42,7 +42,7 @@ a {
 
 .form-login {
     width: 300px;
-    height: 270px;
+    height: 350px;
     background: #fff;
     border-radius: 10px;
     padding: 40px 30px;

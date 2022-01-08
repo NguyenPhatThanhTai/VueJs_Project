@@ -10,6 +10,9 @@
                     <li v-if="checkLogin"><router-link to="/user-infomation">{{nameUser}}</router-link></li>
                     <li v-else><router-link to="/login">Đăng nhập</router-link></li>
 
+                    <li v-if="checkLogin"></li>
+                    <li v-else><router-link to="/signup">Đăng ký</router-link></li>
+
                     <li v-if="checkLogin"><router-link to="/login">Đăng xuất</router-link></li>
                 </ul>
             </div>

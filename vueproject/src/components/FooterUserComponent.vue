@@ -3,7 +3,7 @@
         <div id="footer-content">
                 <div id="logo">
                     <img src="">
-                    <b><i><span style="color: #5271ff;">Hutech</span><span style="color: #f8d24e;"> - Ngôn ngữ mới</span></i></b>
+                    <b><i><span style="color: #5271ff;">Hutech</span><span style="color: #0488D0;"> - Ngôn ngữ mới</span></i></b>
                 </div>
                 <div id="about">
                     <h3>Thành viên thực hiện</h3>

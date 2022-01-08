@@ -54,7 +54,7 @@ a {
 
 .form-signup {
     width: 300px;
-    height: 570px;
+    height: 630px;
     background: #fff;
     border-radius: 10px;
     padding: 40px 30px;
